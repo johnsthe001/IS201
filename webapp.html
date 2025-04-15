@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Riddle Me This!</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f8ff;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .riddle-container {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #2c3e50;
+    }
+
+    .options {
+      margin-top: 20px;
+    }
+
+    .option-button {
+      display: block;
+      margin: 10px auto;
+      padding: 12px 20px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .option-button:hover {
+      background: #2980b9;
+    }
+
+    .feedback {
+      margin-top: 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .incorrect {
+      color: crimson;
+    }
+
+    .next-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    .next-button:hover {
+      background: #1e8449;
+    }
+  </style>
+</head>
+<body>
+  <div class="riddle-container">
+    <h1>🧠 Riddle Me This!</h1>
+    <p id="riddle-text"></p>
+    <div class="options" id="options-container"></div>
+    <div class="feedback" id="feedback"></div>
+   <button class="next-button" id="next-button">Next Riddle</button>
+   <a href="index.html">Resume Page</a>
+   <br>
+   <a href="scratch.html">Scratch Page</a>
+</div>
+
+  <script>
+    const riddles = [
+      {
+        question: "I speak without a mouth and hear without ears. I have nobody, but I come alive with the wind. What am I?",
+        correct: "echo",
+        options: ["echo", "shadow", "cloud", "whistle"]
+      },
+      {
+        question: "The more of me you take, the more you leave behind. What am I?",
+        correct: "footsteps",
+        options: ["footsteps", "time", "memories", "shadows"]
+      },
+      {
+        question: "What has to be broken before you can use it?",
+        correct: "egg",
+        options: ["glass", "egg", "seal", "promise"]
+      }
+    ];
+
+    const quips = [
+      "Oops! Not quite—don't let the riddle get in your head! 🌀",
+      "You're close... ish. Try again, Sherlock. 🕵️",
+      "Nope! But hey, at least you're consistent! 😄",
+      "Wrong again? This riddle's playing hard to get. 😏",
+      "Haha, not even close! But you're making me laugh! 😂"
+    ];
+
+    let currentRiddleIndex = 0;
+
+    const riddleText = document.getElementById("riddle-text");
+    const optionsContainer = document.getElementById("options-container");
+    const feedback = document.getElementById("feedback");
+    const nextButton = document.getElementById("next-button");
+
+    function loadRiddle(index) {
+      const riddle = riddles[index];
+      riddleText.textContent = riddle.question;
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+      nextButton.style.display = 'none';
+
+      optionsContainer.innerHTML = '';
+      riddle.options.forEach(option => {
+        const button = document.createElement('button');
+        button.className = 'option-button';
+        button.textContent = option.charAt(0).toUpperCase() + option.slice(1);
+        button.setAttribute('data-answer', option);
+        button.addEventListener('click', handleAnswer);
+        optionsContainer.appendChild(button);
+      });
+    }
+
+    function handleAnswer(event) {
+      const selected = event.target.getAttribute('data-answer');
+      const correct = riddles[currentRiddleIndex].correct;
+
+      if (selected === correct) {
+        feedback.textContent = "🎉 Correct! You're a riddle wizard!";
+        feedback.className = 'feedback correct';
+        nextButton.style.display = currentRiddleIndex < riddles.length - 1 ? 'inline-block' : 'none';
+
+        // Disable buttons after correct answer
+        document.querySelectorAll('.option-button').forEach(btn => {
+          btn.disabled = true;
+          btn.style.cursor = 'not-allowed';
+        });
+      } else {
+        const quip = quips[Math.floor(Math.random() * quips.length)];
+        feedback.textContent = quip;
+        feedback.className = 'feedback incorrect';
+      }
+    }
+
+    nextButton.addEventListener('click', () => {
+      currentRiddleIndex++;
+      if (currentRiddleIndex < riddles.length) {
+        loadRiddle(currentRiddleIndex);
+      }
+    });
+
+    loadRiddle(currentRiddleIndex);
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freediving</title>
+    <link rel="stylesheet" href="./css/scratch.css"/>
+    <style>
+        body {
+            background-color: whitesmoke;
+            font-style: italic;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .locations {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .location {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            min-width: 250px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        iframe {
+            margin: 20px 0;
+        }
+        .tableau-container {
+            width: 100%;
+            height: 800px;
+            overflow: auto;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section">
+            <h1>Freediving</h1>
+            <p>I love to dive deep. Here is some info about my favorite diving locations:</p>
+        </div>
+
+        <div class="section locations">
+            <div class="location">
+                <h2>Utah Lake</h2>
+                <ul>
+                    <li>Shallow</li>
+                    <li>Low Visibility</li>
+                    <li>Not a great location</li>
+                </ul>
+            </div>
+
+            <div class="location">
+                <h2>Blue Lake</h2>
+                <ul>
+                    <li>Cool underwater features</li>
+                    <li>Warm</li>
+                    <li>Excellent location</li>
+                </ul>
+            </div>
+
+            <div class="location">
+                <h2>Meadow Hot Springs</h2>
+                <ul>
+                    <li>Warm</li>
+                    <li>Pretty good visibility</li>
+                    <li>Small spot for diving</li>
+                </ul>
+
+                <!-- Tableau Embed Section -->
+                <div class="tableau-container">
+                    <h2>Interactive Tableau Graph</h2>
+                    <div class='tableauPlaceholder' id='viz1744681460485' style='position: relative; width: 100%; height: 100%;'>
+                        <noscript>
+                            <a href='#'>
+                                <img alt='Freediving ' src='https://public.tableau.com/static/images/Fr/FreeDiving/Freediving/1_rss.png' style='border: none' />
+                            </a>
+                        </noscript>
+                        <object class='tableauViz' style='width:100%; height:100%; display:none;'>
+                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                            <param name='embed_code_version' value='3' />
+                            <param name='name' value='FreeDiving/Freediving' />
+                            <param name='tabs' value='no' />
+                            <param name='toolbar' value='yes' />
+                            <param name='static_image' value='https://public.tableau.com/static/images/Fr/FreeDiving/Freediving/1.png' />
+                            <param name='animate_transition' value='yes' />
+                            <param name='display_static_image' value='yes' />
+                            <param name='display_spinner' value='yes' />
+                            <param name='display_overlay' value='yes' />
+                            <param name='display_count' value='yes' />
+                            <param name='language' value='en-US' />
+                        </object>
+                    </div>
+                    <script type='text/javascript'>
+                        var divElement = document.getElementById('viz1744681460485');
+                        var vizElement = divElement.getElementsByTagName('object')[0];
+                        vizElement.style.width = '100%';
+                        vizElement.style.height = '100%';
+                        var scriptElement = document.createElement('script');
+                        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Photo from Meadow Hot Springs</h2>
+            <img src="./assets/img/freedive.jpg" alt="My Photo" width="500">
+            <h2>Video on Freediving</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Pi2mzyfgKdI"
+            frameborder="0" allowfullscreen></iframe>
+            <br><br>
+            <a href="index.html">Resume Page</a> | 
+            <a href="webapp.html">Riddle Game</a>
+            <br>
+            <a href="#top">Jump to Top</a>
+        </div>
+    </div>
+</body>
+</html>
